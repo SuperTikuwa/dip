@@ -1,0 +1,103 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+
+% 数式
+\usepackage{amsmath,amsfonts}
+\usepackage{bm}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+
+
+\begin{document}
+
+\title{デジタル映像処理\\第6回課題2}
+\author{K19092\\福田遥生}
+\date{\today}
+\maketitle
+
+\section{はじめに}
+
+
+本レポートでは，図１に示した画像に対し水色の円のみの輪郭を抽出する方法を述べる．
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[height=3cm]{image/kadai.jpg}
+  \caption{元画像}
+\end{figure}
+
+\section{処理手順および処理結果}
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \includegraphics[height=3cm]{image/bin1.png}
+      \caption{二値画像}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \includegraphics[height=3cm]{image/bin2.png}
+      \caption{膨張処理を2回おこなった図2}
+    \end{center}
+  \end{minipage}
+\end{figure}
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \includegraphics[height=3cm]{image/bin3.png}
+      \caption{収縮処理を10回行った図3}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \includegraphics[height=3cm]{image/bin4.png}
+      \caption{膨張処理を２回おこなった二値画像}
+    \end{center}
+  \end{minipage}
+\end{figure}
+
+まず，輪郭抽出のために，二値化した画像に対して膨張処理を２回おこなった．
+
+次に，その画像に対して収縮処理を10回おこなった．図形の外にあるノイズは8回目の収縮処理で削除できたが，膨張処理をおこなったことで画像中央の円2つが繋がってしまったため収縮処理を10回おこなっている．
+その後，膨張処理を2回おこなうことで各図形のサイズを元のサイズに戻している．
+
+最後に，各円の円周と面積を表1に示す．
+
+
+\begin{figure}[h]
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \includegraphics[height=3cm]{image/dist.png}
+      \caption{出力画像}
+
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{0.5\hsize}
+    \begin{center}
+      \makeatletter
+      \def\@captype{table}
+      \makeatother
+      \caption{各円の円周と面積}
+      \begin{tabular}{|l|c|r|}
+        \hline
+        円  & 円周   & 面積     \\
+        \hline
+        円1 & 469.59 & 15720.00 \\
+        \hline
+        円2 & 251.52 & 4522.50  \\
+        \hline
+        円3 & 318.88 & 7238.00  \\
+        \hline
+        円4 & 283.08 & 5733.00  \\
+        \hline
+        円5 & 252.94 & 4547.00  \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{minipage}
+\end{figure}
+
+
+
+
+\end{document}
